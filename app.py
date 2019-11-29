@@ -29,7 +29,8 @@ def save_gazouille():
     if request.method == 'POST':
 
         print(request.form)
-        
+	if len(request.form["user-name"]) < 10 and len(request.form["user-text"]) < 280:
+
           dump_to_csv(request.form)
 
           #Insertion en base de données
@@ -40,7 +41,8 @@ def save_gazouille():
           dump_to_db(objet_tweet)
 
           return redirect(url_for('timeline'))
-        
+        else:
+       	  return "La taille du texte est trop long"
         
         #return "OK"
     if request.method == 'GET':
