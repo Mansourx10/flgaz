@@ -66,12 +66,10 @@ def parse_from_db():
   gaz =[]
   for p in s.query(Tweet).all():
     gaz.append({"user":p.user, "text":p.message})
+  return gaz
 
 
 def dump_to_csv(d):
-	donnees = [d["user-name"],d["user-text"] ]
-	with open('./gazouilles.csv', 'a', newline='', encoding='utf-8') as f:
-		writer = csv.writer(f)
     print(d)
    
     donnees = [d["user-name"],d["user-text"] ]
