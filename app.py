@@ -25,6 +25,7 @@ def home():
 
 @app.route('/gaz', methods=['GET','POST'])
 def save_gazouille():
+
     if request.method == 'POST':
 
         print(request.form)
@@ -54,6 +55,7 @@ def timeline():
     return render_template("timeline.html", gaz = gaz, gaz_db = gaz_db)
 
 def parse_from_csv():
+
     gaz = []
     with open('./gazouilles.csv', 'r') as f:
         reader = csv.reader(f)
@@ -85,6 +87,7 @@ def dump_to_db(tweet):
 @app.route('/timeline/<name>/', methods=['GET'])
 def get_timeline(name):
     print(name)
+
     gaz = get_timeline_user_from_csv(name)
     gaz_db = get_timeline_user_from_csv(name)
     return render_template("timeline.html", gaz = gaz, gaz_db = gaz_db)
@@ -139,3 +142,4 @@ def get_timeline_user_from_csv(name):
     for p in s.query(Tweet).filter_by(user=name):
       gaz.append({"user":p.user, "text":p.message})  
     return gaz
+
